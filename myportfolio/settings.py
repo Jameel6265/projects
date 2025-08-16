@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
-import dj_database_url
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +25,7 @@ SECRET_KEY = 'django-insecure-7waf(v4fv*+_ss#cplvy6_*!u07^o&x(uq%!m+a5obv2pi^8io
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -75,21 +73,21 @@ WSGI_APPLICATION = 'myportfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'advanced_portfolio',
-#         'USER':'root',
-#         'PASSWORD':'root',
-#         'HOST':'localhost',
-#         'PORT':'3306'
-#     }
-# }
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL")  # Render will use this
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'advanced_portfolio',
+        'USER':'root',
+        'PASSWORD':'root',
+        'HOST':'localhost',
+        'PORT':'3306'
+    }
 }
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.getenv("DATABASE_URL")  # Render will use this
+#     )
+# }
 
 
 # Password validation
@@ -128,12 +126,23 @@ USE_TZ = True
 
 # STATIC_URL = 'static/'
 # STATICFILES_DIRS = [ BASE_DIR / "portfolio" / "static" ]
-# # STATIC_ROOT = BASE_DIR / "staticfiles"
+# STATIC_ROOT = BASE_DIR / "staticfiles"
 # STATIC_ROOT = '/home/AbdulHameed6265/portfolio_final/myportfolio/staticfiles'
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [ BASE_DIR / "portfolio" / "static" ]
-STATIC_ROOT = '/home/AbdulHameed6265/portfolio_final/myportfolio/staticfiles'
+# STATIC_URL = 'static/'
+# STATICFILES_DIRS = [ BASE_DIR / "portfolio" / "static" ]
+# STATIC_ROOT = '/home/AbdulHameed6265/portfolio_final/myportfolio/staticfiles'
+
+# settings.py
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "portfolio" / "static"
+]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
