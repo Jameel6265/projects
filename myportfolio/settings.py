@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key-change-me")
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    ".onrender.com",  # important for Render
+    "django-portfolio-bp8l.onrender.com",  # important for Render
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://*.onrender.com",  # important for admin & POST forms
@@ -103,9 +103,9 @@ WSGI_APPLICATION = 'myportfolio.wsgi.application'
 # }
 DATABASES = {
     "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        default=os.getenv("DATABASE_URL"), 
         conn_max_age=600,
-        ssl_require=True,  # Render Postgres uses SSL
+        ssl_require=True
     )
 }
 
@@ -192,6 +192,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'abdulhameed5122000@gmail.com'
-EMAIL_HOST_PASSWORD = 'doad kntd rspl hhmx'
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
